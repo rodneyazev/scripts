@@ -18,7 +18,9 @@ else
 	# Clean old files
 	rm -f PROD*
 	
-	$ORACLE_HOME/bin/expdp PROD/PROD@PRD DUMPFILE=PROD_$(date +%Y%m%d).DMP DIRECTORY=DATA_PUMP_DIR FLASHBACK_TIME=SYSTIMESTAMP SCHEMAS=PB_PROD_SO EXCLUDE=TABLE:\"LIKE \'PBS_ERROR_LOG%\'\",TABLE:\"LIKE \'PBS_ORDER_APP_REJ_NOTIF%\'\",TABLE:\"LIKE \'PMS_PORTFOLIO_HOLDING_HIST_NIN%\'\",TABLE:\"LIKE \'S_UBS_XML_AUDIT%\'\",TABLE:\"LIKE \'AUDIT_TRAIL%\'\" LOGFILE=PROD_$(date +%Y%m%d).log ; echo "Compacting dump file. Please, stand by ..." ; bzip2 PROD_$(date +%Y%m%d).DMP 
+	$ORACLE_HOME/bin/expdp PROD/PROD@PRD DUMPFILE=PROD_$(date +%Y%m%d).DMP DIRECTORY=DATA_PUMP_DIR FLASHBACK_TIME=SYSTIMESTAMP SCHEMAS=PB_PROD_SO EXCLUDE=TABLE:\"LIKE \'PBS_ERROR_LOG%\'\",TABLE:\"LIKE \'PBS_ORDER_APP_REJ_NOTIF%\'\",TABLE:\"LIKE \'PMS_PORTFOLIO_HOLDING_HIST_NIN%\'\",TABLE:\"LIKE \'S_UBS_XML_AUDIT%\'\",TABLE:\"LIKE \'AUDIT_TRAIL%\'\" LOGFILE=PROD_$(date +%Y%m%d).log ;
+	echo "Compacting dump file. Please, stand by ..." ;
+	bzip2 PROD_$(date +%Y%m%d).DMP 
 	
 	echo "Light Dump file generated successfully!"
 	

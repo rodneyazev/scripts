@@ -20,7 +20,9 @@ else
         rm -f PROD*
 	
 	# Generate dump file
-	$ORACLE_HOME/bin/expdp PROD/PROD@PRD DUMPFILE=PROD_$(date +%Y%m%d).DMP DIRECTORY=DATA_PUMP_DIR FLASHBACK_TIME=SYSTIMESTAMP SCHEMAS=PB_PROD_SO LOGFILE= PROD_$(date +%Y%m%d).log ; echo "Compacting dump file. Please, stand by ..." ; bzip2 PROD_$(date +%Y%m%d).DMP
+	$ORACLE_HOME/bin/expdp PROD/PROD@PRD DUMPFILE=PROD_$(date +%Y%m%d).DMP DIRECTORY=DATA_PUMP_DIR FLASHBACK_TIME=SYSTIMESTAMP SCHEMAS=PB_PROD_SO LOGFILE= PROD_$(date +%Y%m%d).log ;
+	echo "Compacting dump file. Please, stand by ..." ;
+	bzip2 PROD_$(date +%Y%m%d).DMP
 	
 	echo "Complete Dump file generated successfully!"
 	
